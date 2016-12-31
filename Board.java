@@ -1,9 +1,14 @@
+/** Battleship board
+ *  X = hit, o = miss, + = ship location
+ */
+
 public class Board {
     private String[][] board;
     private int rows;
     private int columns;
 
     public Board(int rows, int columns) {
+        /* set up board with specified rows and columns */
 		this.rows = rows;
 		this.columns = columns;
         board = new String[rows][columns];
@@ -23,6 +28,7 @@ public class Board {
 
     public void displayBoard() {
         /* display the board on the screen */
+        System.out.println("Opponent's board");
 		System.out.print("   ");
         for(int column = 0; column < columns; column++) {
 			System.out.format("%d ", column+1);
@@ -46,6 +52,7 @@ public class Board {
 
 	public void displayBoardWithShips() {
         /* display the board with ships on the screen */
+        System.out.println("Your board");
 		System.out.print("   ");
         for(int column = 0; column < columns; column++) {
 			System.out.format("%d ", column+1);
