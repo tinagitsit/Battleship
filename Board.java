@@ -6,6 +6,7 @@ public class Board {
     private String[][] board;
     private int rows;
     private int columns;
+    private int piecesOfShipLeft;
 
     public Board(int rows, int columns) {
         /* set up board with specified rows and columns */
@@ -24,6 +25,7 @@ public class Board {
         for(int i = 0; i < length; i++) {
              board[start.getX()][start.getY()+i] = "+";
         }
+        piecesOfShipLeft = piecesOfShipLeft + length;
     }
 
     public void displayBoard() {
@@ -76,6 +78,7 @@ public class Board {
 		int y = target.getY();
 		if(board[x][y].equals("+")) {
 			board[x][y] = "X";
+			piecesOfShipLeft = piecesOfShipLeft - 1;
 		}
 		else {
 			board[x][y] = "o";
@@ -89,24 +92,12 @@ public class Board {
     	return checkHit;
 	}
 
-
-    public static void main(String[] args) {
-        Board test = new Board(10, 10);
-        test.displayBoard();
-		
-		System.out.println();
-		test.setUpBoard(new Coordinate(0,0), 3);
-		test.setUpBoard(new Coordinate(5,2), 5);
-		test.displayBoardWithShips();
-
-		System.out.println(test.hit(new Coordinate(0,0)));
-		test.displayBoard();
-
-		System.out.println(test.hit(new Coordinate(8,9)));
-		test.displayBoard();
-
-		System.out.println();
-		test.displayBoardWithShips();
-
+    public boolean gameOver() {
+        if(piecesOfShipLeft == 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }
